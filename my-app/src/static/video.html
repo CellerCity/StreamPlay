@@ -31,22 +31,51 @@
     </div>
   </nav>
   <hr>
-  <video class="video-panel" controls>
-    <source src="videos/LabMicro.mp4" type="video/mp4">
-  </video>
-  <video class="video-panel" controls>
-    <source src="videos/Microscope.mp4" type="video/mp4">
-  </video>
-  <video class="video-panel" controls>
-    <source src="videos/Vaccine.mp4" type="video/mp4">
-  </video>
-  <video class="video-panel" controls>
-    <source src="videos/VR.mp4" type="video/mp4">
-  </video>
-  <video class="video-panel" controls>
-    <source src="videos/Comb.mp4" type="video/mp4">
-  </video>
+  <div id="vids">
+    <video class="video-panel" controls>
+      <source src="videos/LabMicro.mp4" type="video/mp4">
+    </video>
+    <video class="video-panel" controls>
+      <source src="videos/Microscope.mp4" type="video/mp4">
+    </video>
+    <video class="video-panel" controls>
+      <source src="videos/Vaccine.mp4" type="video/mp4">
+    </video>
+    <video class="video-panel" controls>
+      <source src="videos/VR.mp4" type="video/mp4">
+    </video>
+    <video class="video-panel" controls>
+      <source src="videos/Comb.mp4" type="video/mp4">
+    </video>
+  </div>
 
+  <script>
+    var video_assets = [
+    "videos/LabMicro.mp4",
+    "videos/Microscope.mp4",
+    "videos/VR.mp4",
+    "videos/Comb.mp4",
+    "videos/Vaccine.mp4"
+    ];
+    var j = 0;
+    window.onscroll = function(){
+      if(window.innerHeight + window.scrollY >= document.body.offsetHeight){
+        console.log("Reached the end of the doc");
+        // build a function to add more videos here
+        for(let i=0; i<1; i++){
+          const videoElement = document.createElement("div");
+          videoElement.innerHTML = `<video class="video-panel" controls>
+            <source src=${video_assets[j%5]} type="video/mp4">
+          </video>
+          <video class="video-panel" controls>
+            <source src=${video_assets[(j+1)%5]} type="video/mp4">
+          </video>`;
+          j = (j+2)%5;
+          document.querySelector("#vids").appendChild(videoElement);
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>

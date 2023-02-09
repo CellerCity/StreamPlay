@@ -3,6 +3,10 @@ import './static/css/signupstyles.css';
 import logoImg from './static/img/stream.png'
 import signup_img from './static/img/mainsignup1.png';
 import faviconImg from './static/img/favicon.ico';
+import {FaUserAlt}  from "react-icons/fa";
+import {MdEmail}  from "react-icons/md";
+import {BsFillTelephoneFill} from "react-icons/bs"
+import { AiTwotoneLock} from "react-icons/ai"
 
 function SignUp(){
     return (
@@ -29,10 +33,16 @@ function SignUp(){
                 src="https://kit.fontawesome.com/4fa898188f.js"
                 crossorigin="anonymous"
             ></script>
+                <link 
+                href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+                rel="stylesheet"  type='text/css'></link>
             </head>
             <body>
             <nav class="nav navbar">
+                <a href="/videos">
                 <img src={logoImg} alt="logo" class="heading" />
+                </a>
+                    
             </nav>
             <div class="maindiv row">
                 <div class="div1 col-lg-6">
@@ -42,16 +52,20 @@ function SignUp(){
                 <h1 class="text1">Sign up</h1>
                 <p>Unlimited entertainment at your fingertips.</p>
                 <form action="">
-                    <i class="fa-solid fa-user"></i>
+                    {/* <i class="fa fa-user"></i> */}
+                    <FaUserAlt size={23}/>
                     <input type="text" class="username" placeholder="Username" />
                     <br />
-                    <i class="fa-solid fa-envelope"></i>
+                    {/* <i class="fa fa-envelope"></i> */}
+                    <MdEmail size={27}/>
                     <input type="email" class="email" placeholder="Email" />
                     <br />
-                    <i class="fa-solid fa-phone"></i>
+                    {/* <i class="fa fa-phone"></i> */}
+                    <BsFillTelephoneFill size={23}/>
                     <input type="text" class="phone" placeholder="Phone Number" />
                     <br />
-                    <i class="fa-solid fa-lock"></i>
+                    {/* <i class="fa fa-lock"></i> */}
+                    <AiTwotoneLock size={27}/>
                     <input type="password" class="password" placeholder="Password" />
                     <br />
                     <input type="checkbox" class="checkbox" /> Show Password

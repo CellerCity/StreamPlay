@@ -3,13 +3,16 @@ import './static/css/style.css';
 import logoImg from './static/img/stream.png'
 import cyberImg from './static/img/cybersport_06.jpg';
 import faviconImg from './static/img/favicon.ico';
+import {FaUserAlt}  from "react-icons/fa";
+import { AiTwotoneLock} from "react-icons/ai"
 
 function SignIn(){
     return (  
+
     <html lang="en">
     <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charSet="UTF-8" />
+    <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Streamplay: Sign in</title>
     <link rel="icon" href={faviconImg} />
@@ -20,16 +23,25 @@ function SignIn(){
         crossOrigin="anonymous"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
     <link
         href="https://fonts.googleapis.com/css2?family=Alice&display=swap"
         rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/4fa898188f.js"
+      crossOrigin="anonymous"
+    ></script>
+    <link 
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'></link>
     </head>
     <body>
 
     <nav className="nav navbar">
+    <a href="videos">
         <img src={logoImg} alt="logo" className="heading"/>
+    </a>
         <a href="sign_up"><button className="signup btn btn-outline-primary btn-md" >Sign up</button></a>
     </nav>
     <div className="row">
@@ -39,19 +51,24 @@ function SignIn(){
         <div className="div2 col-lg-6">
         <h1 className="text1">Experience the world through a new lens.</h1>
         <form action="">
-            <i className="fa-solid fa-user"></i>
+
+            <div class="reactIcons">
+                <FaUserAlt size={23}/>
+            </div>
             <input type="text" className="username" placeholder="Username" />
             <br />
-            <i className="fa-solid fa-lock"></i>
+            <div class="reactIcons">
+                <AiTwotoneLock size={27}/>
+            </div>
             <input type="password" className="password" placeholder="Password" />
             <br />
             <button className="signin btn btn-primary btn-md">Sign in</button>
         </form>
         </div>
-        
     </div>
     </body>
     </html>
+
     );
 }
 
