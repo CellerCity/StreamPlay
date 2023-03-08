@@ -1,12 +1,38 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './static/css/style.css';
 import logoImg from './static/img/stream.png'
 import cyberImg from './static/img/cybersport_06.jpg';
 import faviconImg from './static/img/favicon.ico';
 import {FaUserAlt}  from "react-icons/fa";
 import { AiTwotoneLock} from "react-icons/ai"
+import PropTypes from 'prop-types';
 
-function SignIn(){
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+   }
+
+
+export default function SignIn({ setToken }){
+    const [username, setUserName] = useState();
+    const [password, setPassword] = useState();
+
+    const handleSubmit = async e => {
+        e.preventDefault();
+        const token = await loginUser({
+          username,
+          password
+        });
+        setToken(token);
+        window.location = "/";
+      }
+
     return (  
 
     <html lang="en">
@@ -50,17 +76,17 @@ function SignIn(){
         </div>
         <div className="div2 col-lg-6">
         <h1 className="text1">Experience the world through a new lens.</h1>
-        <form action="">
+        <form onSubmit={handleSubmit}>
 
             <div class="reactIcons">
                 <FaUserAlt size={23}/>
             </div>
-            <input type="text" className="username" placeholder="Username" />
+            <input type="text" className="username" placeholder="Username" onChange={e => setUserName(e.target.value)}/>
             <br />
             <div class="reactIcons">
                 <AiTwotoneLock size={27}/>
             </div>
-            <input type="password" className="password" placeholder="Password" />
+            <input type="password" className="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
             <br />
             <button className="signin btn btn-primary btn-md">Sign in</button>
         </form>
@@ -72,4 +98,7 @@ function SignIn(){
     );
 }
 
-export default SignIn;
+
+SignIn.propTypes = {
+    setToken: PropTypes.func.isRequired
+}
