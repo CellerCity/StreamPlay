@@ -16,7 +16,7 @@
 <body>
     <h1>The 8 Puzzle Game</h1>
     <hr>
-    <!-- <canvas id="canvas1" width="500" height="400" style="border: 2px solid blue;"></canvas> -->
+ 
     <pre>Time Elapsed:  <div style="display: inline;" id="clock">0</div> s</pre>
     
     <h2 id="msg" style="font-family: Comic Sans MS; color:rgb(14, 173, 40)"></h2>
@@ -65,11 +65,11 @@
         [0,1,2],
         [3,4,5],
         [6,7,8]
-        ]; // will store  the current configuration of the 8 puzzle problem
-        var zeroPos = {i:0, j:0}; // to track the position of blank(0)
+        ];
+        var zeroPos = {i:0, j:0}; 
 
         function generateRandomNumberNo(a, b){
-            // generates random integer between a & b inclusive (a >= b)
+          
             return Math.floor(Math.random() * b) + a;
         };
 
@@ -87,7 +87,7 @@
         };
         
         function gameStart(){
-            // generating random instance of 8-puzzle problem
+           
             timeElapsed = 0;
             document.getElementById("start").style.display = "none";
             document.getElementById("clock").innerHTML = timeElapsed;
@@ -105,17 +105,10 @@
                 }
                 if(isValidConfig(res)){
                     break;
-                    //console.log("valid config");
                 }
-                //else{
-                //    console.log("invalid config");
-                //}
+              
             }
-            //console.log(res);
-            //console.log("result length: ");
-            //console.log(res.length);
-            
-            // saving the result as global matrix
+           
             currentConfig = [[],[],[]];
             for(var i=0; i<3; i++){
                 for(var j=0; j<3; j++){
@@ -127,11 +120,6 @@
                 }
             }
 
-            /*
-            console.log(currentConfig[0]);
-            console.log(currentConfig[1]);
-            console.log(currentConfig[2]);
-            */
             displayConfig();
             console.log("Zero position");
             console.log(zeroPos.i);
@@ -152,7 +140,7 @@
         
         function checkDisplayWinner(){
             if(isWinner()){
-            // the player has won. display the winning message and clear the board (make it un-interactive)
+         
                 document.getElementById("msg").innerHTML = "Congratulations! You won.";
                 boardInteractible = false;
             }
@@ -185,16 +173,7 @@
             document.getElementById("g").src = resources[currentConfig[2][0]];
             document.getElementById("h").src = resources[currentConfig[2][1]];
             document.getElementById("i").src = resources[currentConfig[2][2]];
-            /*
-            for(var i=0; i<3; i++){
-                for(var j=0; j<3; j++){
-                    console.log(resources[config[i][j]]);
-                }
-            }
-            console.log("First row done");
-            console.log("Second row done");
-            console.log("Third row done");
-            */
+           
         };
         
         function moveUp(){
@@ -207,7 +186,7 @@
                 displayConfig();
                 checkDisplayWinner();
             }
-            //console.log("UP");
+         
         };
 
         function moveDown(){
@@ -220,7 +199,7 @@
                 displayConfig();
                 checkDisplayWinner();
             }
-            //console.log("UP");
+ 
         };
 
         function moveLeft(){
@@ -233,7 +212,7 @@
                 displayConfig();
                 checkDisplayWinner();
             }
-            //console.log("UP");
+        
         };
 
         function moveRight(){
@@ -246,15 +225,14 @@
                 displayConfig();
                 checkDisplayWinner();
             }
-            //console.log("UP");
+          
         };
 
 
         document.addEventListener('keydown', (event) => {
             var name = event.key;
             var code = event.code;
-            // Alert the key name and key code on keydown
-            //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+         
             if(boardInteractible){
                 if (name == 'ArrowUp' || name == 'w' || name == 'W')
                     moveUp();
