@@ -31,13 +31,13 @@ The website includes the following features:
 * Video Viewing
 * Game playing
 
-Features and Functionality
-User Authentication and Authorization
-Users can sign up for an account and log in to access the video and game features. User passwords are hashed using bcrypt for security.
+Features and Functionality:
+* User Authentication and Authorization
+* Users can sign up for an account and log in to access the video and game features. User passwords are hashed using bcrypt for security.
 
-Video Viewing
+Video Viewing:
 Videos can be viewed by all users on the website. Videos can be searched by title and category.
 
-Game Playing
+Game Playing:
 The website includes a simple game that users can play. The game is built using JavaScript and Canvas.
 
