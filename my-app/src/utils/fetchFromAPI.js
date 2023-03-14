@@ -11,7 +11,7 @@ const options = {
   }
 };
 
-export const fetchfromAPI = async(url) => {
+export const fetchFromAPI = async(url) => {
     const { data }= await axios.get(`${BASE_URL}/${url}`,
     options);
 
