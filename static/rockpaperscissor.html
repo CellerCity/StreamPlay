@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Scissors</title>
+	<style>
+body{
+	background-color:beige;
+}
+h1{
+	color: chocolate;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.choices {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.choices button {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  padding: 10px 20px;
+}
+
+.choices button:hover {
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+}
+
+.choices button img {
+  height: 100px;
+  width: 100px;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result button {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
+  cursor: pointer;
+  margin-top: 30px;
+  padding: 10px 20px;
+}
+
+.result button:hover {
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+}
+
+#result-message {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: chocolate;
+}
+
+    </style>
+</head>
+<body>
+	<div class="container">
+		<h1>Rock Paper Scissors</h1>
+		<div class="scoreboard">
+			<p>Player Score: <span id="player-score">0</span></p>
+			<p>Computer Score: <span id="computer-score">0</span></p>
+		</div>
+		<div class="game">
+			<div class="choices">
+				<button id="rock"><img src="../static/img/rock.png"></button>
+				<button id="paper"><img src="../static/img/paper.png"></button>
+				<button id="scissors"><img src="../static/img/scissor.png"></button>
+			</div>
+			<div class="result">
+				<p id="result-message">Choose your weapon to start the game!</p>
+				<button id="reset">Reset</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+let playerScore = 0;
+let computerScore = 0;
+
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const reset = document.querySelector('#reset');
+const playerScoreDisplay = document.querySelector('#player-score');
+const computerScoreDisplay = document.querySelector('#computer-score');
+const resultMessage = document.querySelector('#result-message');
+
+function computerPlay() {
+	const choices = ['rock', 'paper', 'scissors'];
+	const randomIndex = Math.floor(Math.random() * choices.length);
+	return choices[randomIndex];
+}
+
+function playRound(playerSelection, computerSelection) {
+	if (playerSelection === computerSelection) {
+		return "It's a tie!";
+	} else if (playerSelection === 'rock' && computerSelection === 'scissors' ||
+		playerSelection === 'paper' && computerSelection === 'rock' ||
+		playerSelection === 'scissors' && computerSelection === 'paper') {
+		playerScore++;
+		playerScoreDisplay.textContent = playerScore;
+		return "You win!";
+	} else {
+		computerScore++;
+		computerScoreDisplay.textContent = computerScore;
+		return "You lose!";
+	}
+}
+
+function resetGame() {
+	playerScore = 0;
+	computerScore = 0;
+	playerScoreDisplay.textContent = playerScore;
+	computerScoreDisplay.textContent = computerScore;
+	resultMessage.textContent = "Choose your weapon to start the game!";
+}
+
+function game() {
+	rock.addEventListener('click', () => {
+		const computerSelection = computerPlay();
+		const result = playRound('rock', computerSelection);
+		resultMessage.textContent = result;
+	});
+
+	paper.addEventListener('click', () => {
+		const computerSelection = computerPlay();
+		const result = playRound('paper', computerSelection);
+		resultMessage.textContent = result;
+	});
+
+	scissors.addEventListener('click', () => {
+		const computerSelection = computerPlay();
+		const result = playRound('scissors', computerSelection);
+		resultMessage.textContent = result;
+	});
+
+	reset.addEventListener('click', () => {
+		resetGame();
+	});
+}
+
+game();
+
+    </script>
+</body>
+</html>
