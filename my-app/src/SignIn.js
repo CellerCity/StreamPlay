@@ -6,13 +6,55 @@ import faviconImg from './static/img/favicon.ico';
 import {FaUserAlt}  from "react-icons/fa";
 import { AiTwotoneLock} from "react-icons/ai"
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 
 
+export default function SignIn(){
+    const handleSubmit = e => {
+        // Prevent the default submit and page reload
+        e.preventDefault()
+    
+        // Handle validations of the input provided
+        axios
+          .get("http://127.0.0.1:5000/users")
+          .then(response => {
+            // console.log(response);
+            // Handle response
+            // console.log(typeof(response));
+            // console.log(response?.data);
+            let userEntries = response?.data;
+            let numUsers = userEntries.length;
+            // console.log(numUsers);
+            let isUsernameCorrect = false, isPasswordCorrect = false;
+            for(let i=0; i<numUsers; i++){
+                // console.log(userEntries[i]);
+                let saved_username = userEntries[i]['username'];
+                let saved_password = userEntries[i]['password'];
+                
+                if(saved_username === username){
+                    isUsernameCorrect = true;
+                    console.log("user matched");
+                    if(saved_password === password){
+                        isPasswordCorrect = true;
+                        console.log("password matched");
+                        break;
+                    }
+                }
+            }
+            if(isUsernameCorrect && isPasswordCorrect){
+                console.log("Found the correct user entry.")
+                window.location.href = 'http://127.0.0.1:3000/videos_all';
+            }
+            else{
+                console.log("No such user record found.")
+            }
+          })
+      };
 
-export default function SignIn({ setToken }){
-
-
+    const [username, setUsername] = useState(""); 
+    const [password, setPassword] = useState("");
+    
     return (  
 
     <html lang="en">
@@ -52,21 +94,25 @@ export default function SignIn({ setToken }){
     </nav>
     <div className="row">
         <div className="div1 col-lg-6">
-        <img className="image1" src={cyberImg} alt="This is an iamge" />
+        <img className="image1" src={cyberImg} alt="This is an image" />
         </div>
         <div className="div2 col-lg-6">
         <h1 className="text1">Experience the world through a new lens.</h1>
-        <form>
+        <form onSubmit={handleSubmit}>
 
             <div class="reactIcons">
                 <FaUserAlt size={23}/>
             </div>
-            <input type="text" className="username" placeholder="Username" />
+            <input type="text" className="username" placeholder="Username" 
+            id="username" value={username} onChange={e => setUsername(e.target.value)}
+            />
             <br />
             <div class="reactIcons">
                 <AiTwotoneLock size={27}/>
             </div>
-            <input type="password" className="password" placeholder="Password" />
+            <input type="password" className="password" placeholder="Password" 
+                id="password" value={password} onChange={e => setPassword(e.target.value)}
+            />
             <br />
             <button className="signin btn btn-primary btn-md">Sign in</button>
         </form>

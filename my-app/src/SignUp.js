@@ -1,14 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './static/css/signupstyles.css';
 import logoImg from './static/img/stream.png'
 import signup_img from './static/img/mainsignup1.png';
-import faviconImg from './static/img/favicon.ico';
 import {FaUserAlt}  from "react-icons/fa";
-import {MdEmail}  from "react-icons/md";
-import {BsFillTelephoneFill} from "react-icons/bs"
 import { AiTwotoneLock} from "react-icons/ai"
+import axios from "axios";
 
 function SignUp(){
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible((prevState) => !prevState);
+    }
+
+    const handleSubmit = e => {
+        // Prevent the default submit and page reload
+        e.preventDefault()
+    
+        // Handle validations of the input provided
+        axios
+          .post("http://127.0.0.1:5000/users/add", { username, password })
+          .then(response => {
+            console.log(response);
+            // Handle response
+            console.log(response?.statusText);
+            if (response?.status === 200 || response?.statusText === "OK"){
+                console.log("User successfully added. Login to continue.");
+                window.location.href = 'http://127.0.0.1:3000/sign_in';  
+            }
+            else{
+                console.log("User not added!")
+            }
+
+          })
+          .catch(e => {
+            console.log(e); // print any exception
+          })
+      };
+
     return (
         <html lang="en">
             <head>
@@ -51,24 +82,21 @@ function SignUp(){
                 <div class="div2 col-lg-6">
                 <h1 class="text1">Sign up</h1>
                 <p>Unlimited entertainment at your fingertips.</p>
-                <form action="">
+                <form onSubmit={handleSubmit}>
                     {/* <i class="fa fa-user"></i> */}
                     <FaUserAlt size={23}/>
-                    <input type="text" class="username" placeholder="Username" />
-                    <br />
-                    {/* <i class="fa fa-envelope"></i> */}
-                    <MdEmail size={27}/>
-                    <input type="email" class="email" placeholder="Email" />
-                    <br />
-                    {/* <i class="fa fa-phone"></i> */}
-                    <BsFillTelephoneFill size={23}/>
-                    <input type="text" class="phone" placeholder="Phone Number" />
+                    <input type="text" class="username" placeholder="Username"
+                    id="username" name="username" value={username} onChange={e => setUsername(e.target.value)}/>
                     <br />
                     {/* <i class="fa fa-lock"></i> */}
                     <AiTwotoneLock size={27}/>
-                    <input type="password" class="password" placeholder="Password" />
+                    <input  type={passwordVisible ? "text" : "password"}
+                    class="password" placeholder="Password"
+                    id="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
                     <br />
-                    <input type="checkbox" class="checkbox" /> Show Password
+                    <input type="checkbox" class="checkbox" 
+                        onChange={togglePasswordVisibility}
+                    /> Show Password
                     <br />
                     <button class="signup btn btn-info btn-md">Sign up</button>
                 </form>

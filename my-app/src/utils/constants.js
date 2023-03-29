@@ -18,7 +18,8 @@ export const logo = '../static/img/stream.png';
 
 
 export const categories = [
-  { name: 'New', icon: <HomeIcon />, },
+  { name: 'Latest', icon: <HomeIcon />, },
+  { name: 'Anime', icon: <OndemandVideoIcon />, },
   { name: 'JS Mastery', icon: <CodeIcon />, },
   { name: 'Coding', icon: <CodeIcon />, },
   { name: 'ReactJS', icon: <CodeIcon />, },
