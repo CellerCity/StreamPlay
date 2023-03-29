@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import SignIn from '../src/components/SignIn';
+
+import SignUp from '../src/components/SignUp';
 import Videos from './Videos';
-import Puzzle8 from './8Puzzle';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Box } from '@mui/material';
-// import { FaUnderline } from 'react-icons/fa'; 
+
 import { Navbar, Feed, VideoDetail, ChannelDetail, SearchFeed } from './components';
+import RockPaperScissors from './components/RockPaperScissors';
+import GamesHome from './components/GamesHome';
+import TicTacToe from './components/TicTacToe';
+import Puzzle from './components/Puzzle';
+import DiceRoll from './components/DiceRoll';
+
 
 function App() {
 
@@ -14,19 +20,37 @@ function App() {
     <>
       <BrowserRouter>
       <Box sx = {{ backgroundColor: '#FFF' }}>
-        <Navbar/>
+        
         <Routes>
-          <Route path='/' exact element={<Feed /> } />
-          <Route path='/video/:id' exact element={<VideoDetail /> } />
-          <Route path='/channel/:id' exact element={<ChannelDetail /> } />
-          <Route path='/search/:searchTerm' exact element={<SearchFeed /> } />
+          <Route path='/' exact element={
+          <>
+          <Navbar/> 
+          < Feed />
+          </>} />
+          <Route path='/video/:id' exact element={
+          <>
+          <Navbar/>
+          <VideoDetail /> </>} />
+          <Route path='/channel/:id' exact element={
+          <>
+          <Navbar/>
+          <ChannelDetail /> </> } />
+          <Route path='/search/:searchTerm' exact element={
+            <>
+            <Navbar/>
+            <SearchFeed /> </> } />
           
           <Route exact path='/sign_in' element={< SignIn/>}></Route>
           <Route exact path='/sign_up' element={< SignUp/>}></Route>
           <Route exact path='/videos' element={< Videos />}></Route>
-          <Route exact path='/8Puzzle' element={< Puzzle8 />}></Route>
+          <Route exact path='/rockpaperscissor' element={< RockPaperScissors />}></Route>
+          <Route exact path='/games' element={< GamesHome />}></Route>
+          <Route exact path='/tictactoe' element={< TicTacToe />}></Route>
+
+          
           <Route exact path='/blockDodge' element={< Videos />}></Route>
         </Routes>
+      
 
       </Box>
       </BrowserRouter>
