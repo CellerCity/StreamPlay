@@ -10,7 +10,8 @@ import { Navbar, Feed, VideoDetail, ChannelDetail, SearchFeed } from './componen
 import RockPaperScissors from './components/RockPaperScissors';
 import GamesHome from './components/GamesHome';
 import TicTacToe from './components/TicTacToe';
-import Puzzle from './components/Puzzle';
+import WordScrambleGame from './components/WordScrambleGame';
+import WordGuessingGame from './components/WordGuessingGame';
 import DiceRoll from './components/DiceRoll';
 
 
@@ -46,6 +47,9 @@ function App() {
           <Route exact path='/rockpaperscissor' element={< RockPaperScissors />}></Route>
           <Route exact path='/games' element={< GamesHome />}></Route>
           <Route exact path='/tictactoe' element={< TicTacToe />}></Route>
+          <Route exact path='/wordscramble' element={< WordScrambleGame />}></Route>
+          <Route exact path='/wordguess' element={< WordGuessingGame />}></Route>
+          <Route exact path='/dice' element={< DiceRoll />}></Route>
 
           
           <Route exact path='/blockDodge' element={< Videos />}></Route>

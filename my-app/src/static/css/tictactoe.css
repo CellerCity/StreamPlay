@@ -3,6 +3,11 @@
   justify-content: center;
 }
 
+.tic-tac{
+  background-color: #fff;
+  padding: 60px;
+}
+
 .square {
   background-color: #fff;
   border: 2px solid #999;

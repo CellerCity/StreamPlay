@@ -37,7 +37,7 @@ const TicTacToe = () => {
     : `"${xIsNext ? 'X' : 'O'}" player turn`;
 
   return (
-    <div>
+    <div className='tic-tac'>
       <h1>TicTacToe</h1>
       <div className="board-row">
         {renderSquare(0)}
