@@ -1,0 +1,141 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-top: 0;
+  }
+  
+  .game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding-right: 20px;
+   
+
+  }
+  
+  .dice-container {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .dice-container.shake {
+    animation: shake 0.5s;
+  }
+  
+  @keyframes shake {
+    10%, 90% {
+      transform: translate(-1px, 0);
+    }
+  
+    20%, 80% {
+      transform: translate(2px, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate(-4px, 0);
+    }
+  
+    40%, 60% {
+      transform: translate(4px, 0);
+    }
+  }
+  
+  .dice-image {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .dice-roll {
+    position: absolute;
+    bottom: -30px;
+    font-size: 1rem;
+  }
+  
+  .options-container {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .options {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .option {
+    width: 50px;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .option.active {
+    background-color: lightblue;
+  }
+  
+  .option.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .score-container {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .score-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .score {
+    font-size: 3rem;
+  }
+  
+  .score.game-over {
+    color: green;
+  }
+  
+  .game-over-message {
+    margin-top: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .game-over-message button {
+    margin-top: 10px;
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .game-over-message button:hover {
+    background-color: blue;
+    color: white;
+  }
+  
