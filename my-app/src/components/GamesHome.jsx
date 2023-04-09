@@ -5,6 +5,7 @@ import GameCard from './GameCard';
 import img2 from "../static/img/tictactoe-image.png"
 import img3 from "../static/img/scramble2.jpg"
 import img4 from "../static/img/dice.jpg"
+import img5 from "../static/img/wordguess.png"
 
 function GamesHome() {
     const game = {
@@ -31,14 +32,17 @@ function GamesHome() {
         img: img3
       };
 
+      const game4 = {
+        name: "Word Guessing Game",
+        link:"/wordguess",
+        img: img5
+      };
 
 
     return (
     <div className="App">
     
-      <nav>
-        <h1>Streamplay</h1>
-      </nav>
+   
       <div className='row'>
 
       <GameCard params={game3} />
@@ -48,9 +52,10 @@ function GamesHome() {
       </div>
       <div className='row'>
       <GameCard params={game} />
+      <GameCard params={game4} />
     
       </div>
-      
+    
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function SignIn() {
                     }
                     if(isUsernameCorrect && isPasswordCorrect){
                         console.log("Found the correct user entry.")
-                        window.location.href = 'http://127.0.0.1:3000/videos_all';
+                        window.location.href = 'http://127.0.0.1:3000/home';
                     }
                     else{
                         console.log("No such user record found.")
