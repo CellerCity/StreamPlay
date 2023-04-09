@@ -12,6 +12,7 @@ import TicTacToe from './components/TicTacToe';
 import WordScrambleGame from './components/WordScrambleGame';
 import WordGuessingGame from './components/WordGuessingGame';
 import DiceRoll from './components/DiceRoll';
+import Home from './components/Home';
 
 function App() {
 
@@ -49,6 +50,7 @@ function App() {
           <Route exact path='/wordscramble' element={< WordScrambleGame />}></Route>
           <Route exact path='/wordguess' element={< WordGuessingGame />}></Route>
           <Route exact path='/dice' element={< DiceRoll />}></Route>
+          <Route exact path='/home' element={< Home/>}></Route>
         </Routes>
 
       </Box>
