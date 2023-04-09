@@ -1,33 +1,51 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import logo from "../static/img/stream.png";
-const style1 = {
-    width : '200px',
-    margin : '10px 20px '
+import image from "../static/img/homeimg.png";
+import { NavLink } from 'react-router-dom';
+
+const linkStyle = {
+  marginRight: '30px',
+  padding: '10px 20px',
+  marginTop : '30px'
+};
+
+const tagStyle = {
+  fontFamily: '-apple-system, system-ui, BlinkMacSystemFont ',
+  color: "grey",
+  fontWeight : '200',
+  fontSize : '56',
+  textAlign : 'left',
+  marginLeft : '40px',
+
+
 }
 
+const Home = () => {
+  return (
+    
+            <div className="row">
+                  <div className='col-md-6 pt-5'> <br /> <br /> <br />
+                    <h1 style={tagStyle}>
+                    Experience the ultimate fusion of streaming and gaming entertainment <br />
+                    <NavLink to="/" className=' btn btn-outline-primary' style={linkStyle}>Watch Videos</NavLink>
+                    <NavLink to="/games" className='btn btn-outline-secondary' style={linkStyle}>Play Games</NavLink>
+                    </h1>
+                   
+                    
 
-function Home(){
-    return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src={logo} alt=""  style={style1}/>
-        <div class="collapse navbar-collapse" id="navbarNav"  >
-          <ul class="navbar-nav">
-            <li class="nav-item ">
-              <a class="nav-link active" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact us</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
 
-    );
-}
+                </div>
+                <div className='col-md-6'>
+                <img className="image1" src={image} alt="image" />
 
+
+      
+                </div>
+
+
+                
+            </div>
+
+  );
+};
 
 export default Home;

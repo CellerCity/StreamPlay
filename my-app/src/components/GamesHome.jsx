@@ -36,9 +36,7 @@ function GamesHome() {
     return (
     <div className="App">
     
-      <nav>
-        <h1>Streamplay</h1>
-      </nav>
+   
       <div className='row'>
 
       <GameCard params={game3} />

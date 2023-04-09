@@ -68,12 +68,13 @@
   .options-container {
     display: flex;
     flex-direction: column;
-
+ 
   }
   
   .options {
     display: flex;
     flex-wrap: wrap;
+
   }
   
   .option {
