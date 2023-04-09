@@ -13,7 +13,8 @@ const Navbar = () => (
       {/* <img src={logo} alt="logo" height={45} /> */}
     {/* <Link to="/home" style={{ display: "flex", alignItems: "center" }}> */}
     {/* </Link> */}
-      <NavLink className="nav-link " to="/home" style={{color: "white", "padding-right":"500px", fontSize: "19px"}}>Home</NavLink>
+      <NavLink className="nav-link " to="/home" style={{color: "white",
+       marginLeft:"20px", marginRight:"500px", fontSize: "19px"}}>Home</NavLink>
     <SearchBar />
   </Stack>
 );

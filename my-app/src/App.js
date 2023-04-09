@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Videos from './Videos';
-import Puzzle8 from './8Puzzle';
+// import Puzzle8 from './8Puzzle';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Box } from '@mui/material';
 import { Navbar, Feed, VideoDetail, ChannelDetail, SearchFeed,
 SignIn, SignUp, RockPaperScissors, GamesHome, TicTacToe,
-WordScrambleGame, WordGuessingGame, DiceRoll, Home } from './components';
+WordScrambleGame, WordGuessingGame, DiceRoll, Home} from './components';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
@@ -41,7 +41,6 @@ function App() {
           <Route exact path='/' element={< SignIn/>}></Route>
           <Route exact path='/sign_up' element={< SignUp/>}></Route>
           <Route exact path='/videos_sample' element={< Videos />}></Route>
-          <Route exact path='/8Puzzle' element={< Puzzle8 />}></Route>
           <Route exact path='/wordguess' element={< WordGuessingGame />}></Route>
           
           

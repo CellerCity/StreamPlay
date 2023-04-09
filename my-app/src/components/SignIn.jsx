@@ -5,17 +5,37 @@ import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import logo from "../static/img/stream.png";
 import image from "../static/img/cybersport_06.jpg";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from "axios";
 
 export default function SignIn() {
+    const validateUsername = (username) => {
+      const regex = /^[a-zA-Z0-9]+$/;
+      return regex.test(username);
+    };
+    
+    const validatePassword = (password) => {
+      // Minimum four characters, at least one uppercase letter, one lowercase letter, one number and one special character
+      const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$/;
+      return regex.test(password);
+    };
 
     const handleSubmit = e => {
                 // Prevent the default submit and page reload
                 e.preventDefault()
-            
-                // Handle validations of the input provided
+
+              // Handle validations of the input provided
+              if(! validateUsername(username) ){
+                alert("Invalid username. Must be of alphanumeric characters only")
+                return;
+              }
+              if(! validatePassword(password)){
+                alert("Invalid password! Minimum four characters, at least one uppercase letter, one lowercase letter, one number and one special character")
+                return;
+              }
+                
+                
                 axios
                   .get("http://127.0.0.1:5000/users")
                   .then(response => {
@@ -47,7 +67,7 @@ export default function SignIn() {
                         window.location.href = 'http://127.0.0.1:3000/home';
                     }
                     else{
-                        console.log("No such user record found.")
+                        alert("No such user record found.")
                     }
                   })
               };
@@ -59,6 +79,8 @@ export default function SignIn() {
       <div>
         <nav className="nav navbar">
           <img src={logo} alt="logo" className="heading" />
+          <NavLink className="nav-link btn-primary btn" to="/sign_up" style={{color: "white",
+           marginRight: "20px" }}>SIGN UP</NavLink>
         </nav>
         <div className="row" id = "page1">
           <div className="div1 col-lg-6">

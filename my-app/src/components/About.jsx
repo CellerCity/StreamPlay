@@ -1,5 +1,6 @@
 import React from "react";
 import image from "../static/img/admin2.jpeg";
+import image1 from "../static/img/admin1.jpg";
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
@@ -12,10 +13,10 @@ const About = () => {
       <div className="col-md-6">
         <div className="d-flex justify-content-center">
           <Card style={{ width: '17rem' }}>
-            <Image className="card-img-top" src={image} alt="Admin 1" />
+            <Image className="card-img-top" src={image1} alt="Admin 1" />
             <Card.Body>
               <Card.Title>Aman</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">admin1@email.com</Card.Subtitle>
+              <Card.Subtitle className="mb-2 text-muted">amancha9161@gmail.com</Card.Subtitle>
             </Card.Body>
           </Card>
         </div>
