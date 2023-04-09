@@ -1,101 +1,193 @@
-import React, { useState, useEffect } from 'react';
-import "../static/css/wordguessinggame.css"
 
-const WordGuessGame = () => {
-  const [word, setWord] = useState("");
-  const [maxGuesses, setMaxGuesses] = useState(6);
-  const [incorrectLetters, setIncorrectLetters] = useState([]);
-  const [correctLetters, setCorrectLetters] = useState([]);
-  const [hint, setHint] = useState("");
-  const [inputValue, setInputValue] = useState("");
+import '../static/css/wordguessinggame.css';
+import { useEffect } from 'react';
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/words.json');
-      const data = await response.json();
-      const randomWord = data[Math.floor(Math.random() * data.length)];
-      setWord(randomWord.word);
-      setMaxGuesses(randomWord.word.length >= 5 ? 8 : 6);
-      setCorrectLetters([]);
-      setIncorrectLetters([]);
-      setHint(randomWord.hint);
-    };
-    fetchData();
-  }, []);
+function WordGuessingGame() {
 
-  const handleInputChange = (event) => {
-    const key = event.target.value.toLowerCase();
-    if (key.match(/^[A-Za-z]+$/) && !incorrectLetters.includes(` ${key}`) && !correctLetters.includes(key)) {
-      if (word.includes(key)) {
-        let updatedCorrectLetters = [...correctLetters];
+
+
+useEffect(() => {
+
+    let words = [
+        {
+            word: "addition",
+            hint: "The process of adding numbers"
+        },
+        {
+            word: "meeting",
+            hint: "Event in which people come together"
+        },
+        {
+            word: "number",
+            hint: "Math symbol used for counting"
+        },
+        {
+            word: "exchange",
+            hint: "The act of trading"
+        },
+        {
+            word: "canvas",
+            hint: "Piece of fabric for oil painting"
+        },
+        {
+            word: "garden",
+            hint: "Space for planting flower and plant"
+        },
+        {
+            word: "position",
+            hint: "Location of someone or something"
+        },
+        {
+            word: "feather",
+            hint: "Hair like outer covering of bird"
+        },
+        {
+            word: "comfort",
+            hint: "A pleasant feeling of relaxation"
+        },
+        {
+            word: "tongue",
+            hint: "The muscular organ of mouth"
+        },
+        {
+            word: "expansion",
+            hint: "The process of increase or grow"
+        },
+        {
+            word: "country",
+            hint: "A politically identified region"
+        },
+        {
+            word: "group",
+            hint: "A number of objects or persons"
+        },
+        {
+            word: "taste",
+            hint: "Ability of tongue to detect flavour"
+        },
+        {
+            word: "store",
+            hint: "Large shop where goods are traded"
+        },
+        {
+            word: "field",
+            hint: "Area of land for farming activities"
+        },
+        {
+            word: "friend",
+            hint: "Person other than a family member"
+        },
+        {
+            word: "pocket",
+            hint: "A bag for carrying small items"
+        },
+        {
+            word: "needle",
+            hint: "A thin and sharp metal pin"
+        },
+        {
+            word: "expert",
+            hint: "Person with extensive knowledge"
+        },
+        {
+            word: "statement",
+            hint: "A declaration of something"
+        },
+        {
+            word: "second",
+            hint: "One-sixtieth of a minute"
+        },
+        {
+            word: "library",
+            hint: "Place containing collection of books"
+        },
+    ]
+    
+    function randomWord() {
+        let ranItem = words[Math.floor(Math.random() * words.length)];
+        word = ranItem.word;
+        maxGuesses = word.length >= 5 ? 8 : 6;
+        correctLetters = []; incorrectLetters = [];
+        hintTag.innerText = ranItem.hint;
+        guessLeft.innerText = maxGuesses;
+        wrongLetter.innerText = incorrectLetters;
+    
+        let html = "";
         for (let i = 0; i < word.length; i++) {
-          if (word[i] === key) {
-            updatedCorrectLetters[i] = key;
-          }
+            html += `<input type="text" disabled>`;
+            inputs.innerHTML = html;
         }
-        setCorrectLetters(updatedCorrectLetters);
-      } else {
-        setMaxGuesses(maxGuesses - 1);
-        setIncorrectLetters([...incorrectLetters, ` ${key}`]);
-      }
     }
-    setInputValue("");
-  };
-
-  const resetGame = () => {
-    setInputValue("");
-    setWord("");
-    setMaxGuesses(6);
-    setIncorrectLetters([]);
-    setCorrectLetters([]);
-  };
-
-  const renderInputs = () => {
-    let inputs = [];
-    for (let i = 0; i < word.length; i++) {
-      inputs.push(
-        <input type="text" value={correctLetters[i] ? correctLetters[i] : ''} disabled key={i} />
-      );
+    
+    function initGame(e) {
+        let key = e.target.value.toLowerCase();
+        if(key.match(/^[A-Za-z]+$/) && !incorrectLetters.includes(` ${key}`) && !correctLetters.includes(key)) {
+            if(word.includes(key)) {
+                for (let i = 0; i < word.length; i++) {
+                    if(word[i] == key) {
+                        correctLetters += key;
+                        inputs.querySelectorAll("input")[i].value = key;
+                    }
+                }
+            } else {
+                maxGuesses--;
+                incorrectLetters.push(` ${key}`);
+            }
+            guessLeft.innerText = maxGuesses;
+            wrongLetter.innerText = incorrectLetters;
+        }
+        typingInput.value = "";
+    
+        setTimeout(() => {
+            if(correctLetters.length === word.length) {
+                alert(`Congrats! You found the word ${word.toUpperCase()}`);
+                return randomWord();
+            } else if(maxGuesses < 1) {
+                alert("Game over! You don't have remaining guesses");
+                for(let i = 0; i < word.length; i++) {
+                    inputs.querySelectorAll("input")[i].value = word[i];
+                }
+            }
+        }, 100);
     }
-    return inputs;
-  };
 
-  const renderIncorrectLetters = () => {
-    let letters = '';
-    for (let i = 0; i < incorrectLetters.length; i++) {
-      letters += incorrectLetters[i];
-    }
-    return letters;
-  };
+    const inputs = document.querySelector(".inputs"),
+    hintTag = document.querySelector(".hint span"),
+    guessLeft = document.querySelector(".guess-left span"),
+    wrongLetter = document.querySelector(".wrong-letter span"),
+    resetBtn = document.querySelector(".reset-btn"),
+    typingInput = document.querySelector(".typing-input");
 
-  useEffect(() => {
-    if (correctLetters.length === word.length) {
-      alert(`Congrats! You found the word ${word.toUpperCase()}`);
-      resetGame();
-    } else if (maxGuesses < 1) {
-      alert(`Game over! You don't have remaining guesses`);
-      for (let i = 0; i < word.length; i++) {
-        let updatedCorrectLetters = [...correctLetters];
-        updatedCorrectLetters[i] = word[i];
-        setCorrectLetters(updatedCorrectLetters);
-      }
-    }
-  }, [correctLetters, maxGuesses, word]);
+    resetBtn.addEventListener("click", randomWord);
+    typingInput.addEventListener("input", initGame);
+    inputs.addEventListener("click", () => typingInput.focus());
+    document.addEventListener("keydown", () => typingInput.focus());
+
+    let word, maxGuesses, incorrectLetters = [], correctLetters = [];
+    randomWord();
+}, [])
+
+
+
 
   return (
-    <div className="WordGuessGame">
-      <div className="inputs">{renderInputs()}</div>
-      <div className="hint">Hint: <span>{hint}</span></div>
-      <div className="guess-left">Guesses Left: <span>{maxGuesses}</span></div>
-      <div className="wrong-letter">Wrong Letters: <span>{renderIncorrectLetters()}</span></div>
-      <div className="controls">
-        <button className="reset-btn" onClick={resetGame}>Reset</button>
-        <input className="typing-input" type="text" value={inputValue} onChange={(event) => setInputValue(event.target.value)
-} maxLength={1} />
-<button className="submit-btn" onClick={handleInputChange}>Submit</button>
-</div>
-</div>
-);
-};
+  <body>
+    <div class="wrapper">
+      <h1>Guess the Word</h1>
+      <div class="content">
+        <input type="text" class="typing-input" maxlength="1" />
+        <div class="inputs"></div>
+        <div class="details">
+          <p class="hint">Hint: <span></span></p>
+          <p class="guess-left">Remaining guesses: <span></span></p>
+          <p class="wrong-letter">Wrong letters: <span></span></p>
+        </div>
+        <button class="reset-btn">Reset Game</button>
+      </div>
+    </div>
 
-export default WordGuessGame;
+  </body>
+  );
+}
+
+export default WordGuessingGame;

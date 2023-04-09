@@ -56,7 +56,11 @@ function App() {
           </>}></Route>
       
           
-          <Route exact path='/wordguess' element={< WordGuessingGame />}></Route>
+          <Route exact path='/wordguess' element={
+            <>
+            < WordGuessingGame />
+            </>
+          }></Route>
           
           <Route path='/home' exact element={
           <>
