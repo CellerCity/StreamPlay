@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Box } from '@mui/material';
 import { Navbar, Feed, VideoDetail, ChannelDetail, SearchFeed,
 SignIn, SignUp, RockPaperScissors, GamesHome, TicTacToe,
-WordScrambleGame, WordGuessingGame, DiceRoll, Home} from './components';
+WordScrambleGame, WordGuessingGame, DiceRoll, Home, VideoUpload} from './components';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
@@ -44,6 +44,11 @@ function App() {
           <Route exact path='/wordguess' element={< WordGuessingGame />}></Route>
           
           
+          <Route path='/video_upload' exact element={
+          <>
+          <Homenavbar/> 
+          < VideoUpload/>
+          </>} />
           <Route path='/games' exact element={
           <>
           <Homenavbar/> 

@@ -18,15 +18,15 @@ connection.once('open', () => {
 });
 
 const usersRouter = require("./routes/users");
+const videosRouter = require("./routes/videos");
 
-
-app.get('/myGame', (req, res) => {
-    res.sendFile('C:\\Users\\AMAN\\Desktop\\Files_Shortcuts\\NIT AP\\3rd year sem 2\\Web Development\\Website Code\\my-app\\src\\static\\8Puzzle.html');
-  });
+// app.get('/myGame', (req, res) => {
+//     res.sendFile('C:\\Users\\AMAN\\Desktop\\Files_Shortcuts\\NIT AP\\3rd year sem 2\\Web Development\\Website Code\\my-app\\src\\static\\8Puzzle.html');
+//   });
 
 
 app.use('/users', usersRouter);
-
+app.use('/videos', videosRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

@@ -21,8 +21,8 @@ const SearchFeed = () => {
       </Typography>
       <Box display="flex">
         <Box sx={{ mr: { sm: '100px' } }}/>
-        {<Videos videos={videos} />}
       </Box>
+        {<Videos videos={videos} selectedCategory={searchTerm}/>}
     </Box>
   );
 };
