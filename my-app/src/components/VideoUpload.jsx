@@ -7,6 +7,7 @@ const VideoUpload = () => {
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
   const [file, setFile] = useState(null);
+  const [imgFile, setImgFile] = useState(null);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -24,13 +25,23 @@ const VideoUpload = () => {
     setFile(event.target.files[0]);
   };
 
+  const handleImgFileChange = (event) => {
+    setImgFile(event.target.files[0]);
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("tags", tags);
-    formData.append("awesome-file", file); 
+    
+    let tempTags = tags.replace(/\s/g, ''); // remove all whitespaces
+    tempTags = tempTags.replace(/,+/g, ','); // remove multiple commas with a single one
+    let tagsArray = tempTags.split(","); // splitting tags on [ , ]
+    
+    formData.append("tags", tagsArray);
+    formData.append("file", file); 
+    formData.append("file", imgFile);
     // awesome-file corresponds to name of the input-field that is useful afterwards in the backend to save the video
 
         axios.post("http://127.0.0.1:5000/videos/", formData, {
@@ -44,12 +55,13 @@ const VideoUpload = () => {
           setDescription("");
           setTags("");
           setFile(null);
+          setImgFile(null);
           // // Redirect the user to the video page
           // history.push(`/video/${videoId}`);
           
       }).catch (error => {
         console.error(error);
-        alert("Error uploading video ?>J 😒.");
+        alert("Error! The title or the video is duplicate.");
     });
   };
 
@@ -69,6 +81,7 @@ const VideoUpload = () => {
             required
           />
         </div>
+        <br/>
         <div className="form-group">
           <label htmlFor="description">Description</label>
           <textarea
@@ -80,6 +93,7 @@ const VideoUpload = () => {
             required
           />
         </div>
+        <br/>
         <div className="form-group">
           <label htmlFor="tags">Tags (comma-separated)</label>
           <input
@@ -92,8 +106,10 @@ const VideoUpload = () => {
             required
           />
         </div>
+        <br/>
+
         <div className="form-group">
-          <label htmlFor="video" >Video</label>
+          <label htmlFor="video" >Upload Video</label>
           <input
             type="file"
             className="form-control-file"
@@ -104,6 +120,20 @@ const VideoUpload = () => {
             required
           />
         </div>
+        <br/>
+        <div className="form-group">
+          <label htmlFor="imageE" >Upload Thumbnail</label>
+          <input
+            type="file"
+            className="form-control-file"
+            id="imageE"
+            name="thumbnail-file"
+            accept="image/*"
+            onChange={handleImgFileChange}
+            required
+          />
+        </div>
+        <br/>
         <button type="submit" className="btn btn-primary">
           Upload Video
         </button>

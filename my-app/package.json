@@ -26,6 +26,9 @@
     "react-player": "^2.10.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "redux": "^4.2.1",
+    "thumbsupply": "^0.4.0",
+    "video-react": "^0.16.0",
     "web-vitals": "^3.3.0"
   },
   "scripts": {

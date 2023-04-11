@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Box } from '@mui/material';
 import { Navbar, Feed, VideoDetail, ChannelDetail, SearchFeed,
 SignIn, SignUp, RockPaperScissors, GamesHome, TicTacToe,
-WordScrambleGame, WordGuessingGame, DiceRoll, Home, VideoUpload} from './components';
+WordScrambleGame, WordGuessingGame, DiceRoll, Home, VideoUpload, LocalVideoDetail} from './components';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/js/bootstrap.bundle"
@@ -48,6 +48,11 @@ function App() {
           <>
           <Homenavbar/> 
           < VideoUpload/>
+          </>} />
+          <Route path='/local_video' exact element={
+          <>
+          <Homenavbar/> 
+          < LocalVideoDetail/>
           </>} />
           <Route path='/games' exact element={
           <>

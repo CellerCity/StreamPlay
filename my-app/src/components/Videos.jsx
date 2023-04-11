@@ -1,7 +1,7 @@
 import React from "react";
 import { Stack, Box } from "@mui/material";
 
-import { ChannelCard, Loader, VideoCard, LocalVideoCard } from "./";
+import { ChannelCard, Loader, VideoCard, LocalVideos } from "./";
 
 const Videos = ({ videos, direction, selectedCategory }) => {
   if(!videos?.length) return <Loader />;
@@ -17,7 +17,7 @@ const Videos = ({ videos, direction, selectedCategory }) => {
       ))}
     </Stack>
 
-    <LocalVideoCard selectedCategory={selectedCategory}/>
+    <LocalVideos selectedCategory={selectedCategory}/>
 
     </>
   );

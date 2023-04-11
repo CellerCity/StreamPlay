@@ -20,11 +20,10 @@ export const logo = '../static/img/stream.png';
 export const categories = [
   { name: 'Latest', icon: <HomeIcon />, },
   { name: 'Anime', icon: <OndemandVideoIcon />, },
+  { name: 'Music', icon: <MusicNoteIcon /> },
+  { name: 'Comedy', icon: <TheaterComedyIcon />, },
   { name: 'JS Mastery', icon: <CodeIcon />, },
   { name: 'Coding', icon: <CodeIcon />, },
-  { name: 'ReactJS', icon: <CodeIcon />, },
-  { name: 'NextJS', icon: <CodeIcon />, },
-  { name: 'Music', icon: <MusicNoteIcon /> },
   { name: 'Education', icon: <SchoolIcon />, },
   { name: 'Podcast', icon: <GraphicEqIcon />, },
   { name: 'Movie', icon: <OndemandVideoIcon />, },
@@ -33,7 +32,6 @@ export const categories = [
   { name: 'Sport', icon: <FitnessCenterIcon />, },
   { name: 'Fashion', icon: <CheckroomIcon />, },
   { name: 'Beauty', icon: <FaceRetouchingNaturalIcon />, },
-  { name: 'Comedy', icon: <TheaterComedyIcon />, },
   { name: 'Gym', icon: <FitnessCenterIcon />, },
   { name: 'Crypto', icon: <DeveloperModeIcon />, },
 ];

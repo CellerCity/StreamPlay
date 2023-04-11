@@ -14,7 +14,9 @@ const Navbar = () => (
     {/* <Link to="/home" style={{ display: "flex", alignItems: "center" }}> */}
     {/* </Link> */}
       <NavLink className="nav-link " to="/home" style={{color: "white",
-       marginLeft:"20px", marginRight:"500px", fontSize: "19px"}}>Home</NavLink>
+       marginLeft:"20px", marginRight:"10px", fontSize: "19px"}}>Home</NavLink>
+       <NavLink className="nav-link " to="/video_upload" style={{color: "white",
+       marginLeft:"10px", marginRight:"400px", fontSize: "19px"}}>Upload</NavLink>
     <SearchBar />
   </Stack>
 );

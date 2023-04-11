@@ -18,6 +18,10 @@ export {default as TicTacToe} from './TicTacToe';
 export {default as WordScrambleGame} from './WordScrambleGame';
 export {default as WordGuessingGame} from './WordGuessingGame';
 export {default as DiceRoll} from './DiceRoll';
+
 export {default as Home} from './Home';
-export {default as LocalVideoCard} from './LocalVideoCard';
 export {default as VideoUpload} from  './VideoUpload';
+export {default as LocalVideos} from  './LocalVideos';
+export {default as LocalVideoCard} from './LocalVideoCard';
+export {default as LocalVideoDetail} from  './LocalVideoDetail';
+
