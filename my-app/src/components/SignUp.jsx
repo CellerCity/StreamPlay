@@ -18,7 +18,7 @@ export default function SignUp() {
     };
 
     const validateUsername = (username) => {
-      const regex = /^[a-zA-Z0-9]+$/;
+      const regex = /^[a-zA-Z0-9]{4,}$/;
       return regex.test(username);
     };
     
@@ -34,7 +34,7 @@ export default function SignUp() {
     
         // Handle validations of the input provided
         if(! validateUsername(username) ){
-          alert("Invalid username. Must be of alphanumeric characters only")
+          alert("Invalid username. Must be of alphanumeric characters only & length should be at least 4.")
           return;
         }
         if(! validatePassword(password)){

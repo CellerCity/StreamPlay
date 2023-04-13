@@ -3,18 +3,18 @@ import { Player } from 'video-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 
-export default function LocalVideoCard( {key, video} ) {
-    console.log("Inside Local Video Card");
+export default function LocalVideoCard( {video} ) {
+    // console.log("Inside Local Video Card");
     console.log(video);
     // console.log(key);
     const vidName = video?.videoFilePath;
     const thumbnailName = video?.thumbnailFilePath;
     const title = video?.title;
     const description = video?.description;
-    console.log(vidName);
-    console.log(thumbnailName);
-    console.log(title);
-    console.log(description);
+    // console.log(vidName);
+    // console.log(thumbnailName);
+    // console.log(title);
+    // console.log(description);
 
 
     const navigate = useNavigate();

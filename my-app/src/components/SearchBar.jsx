@@ -12,6 +12,15 @@ const SearchBar = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // stops the default behaviour of the browser
 
+        // validating the search term(s) entered
+        const regex = /^[\w\d\s-_]+$/i;  
+        //matches any string that contains only alphanumeric characters (letters and numbers), spaces, hyphens & underscores
+
+        if(! regex.test(searchTerm)){
+            alert("The search term must contain only alphanumeric characters spaces, hyphens & underscores");
+            return;
+        }
+
         if(searchTerm){
             navigate(`/search/${searchTerm}`);
             

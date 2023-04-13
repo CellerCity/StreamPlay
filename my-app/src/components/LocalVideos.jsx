@@ -7,7 +7,11 @@ export default function LocalVideos({ selectedCategory }) {
     const [videos, setVideos] = useState([]);
     // console.log("Inside LocalVideoDetail Component");
     // console.log(selectedCategory);
-    const serverReqURL = `http://localhost:5000/videos/search?title=${selectedCategory}&tags=${selectedCategory}`;
+    const tagSearchStr = (selectedCategory.includes(",")) ?  selectedCategory.replace(/\s+/g, '').replace(/,+/g, ',') : selectedCategory;
+    // if the search string has commas we can pass the individual comma separated terms as tags(string)
+
+    console.log(tagSearchStr);
+    const serverReqURL = `http://localhost:5000/videos/search?title=${selectedCategory}&tags=${tagSearchStr}`;
     console.log(serverReqURL);
     useEffect(() => {
       async function fetchVideos() {

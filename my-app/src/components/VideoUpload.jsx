@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+const allowedVideoExtensions = ["mp4", "mov", "avi", "mkv", "webm"];
+const allowedImgFileExtensions = ["jpg", "jpeg", "png", "gif"];
+const maxVideoSize = 10485760; // 10 mb
+const maxImgFileSize = 52428800; // 50 mb 
 
 const VideoUpload = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
-  const [file, setFile] = useState(null);
-  const [imgFile, setImgFile] = useState(null);
+  const [file, setFile] = useState(null); // video file
+  const [imgFile, setImgFile] = useState(null); // video thumbnail-image file
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -24,19 +28,56 @@ const VideoUpload = () => {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
-
+  
   const handleImgFileChange = (event) => {
     setImgFile(event.target.files[0]);
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    // handling data validation
+
+    // if no files are uploaded
+    if(!file){
+      console.log("Please select a video file for upload.");
+      return;
+    }
+    if(!imgFile){
+      console.log("Please select a image file for upload.");
+      return;
+    }
+
+    // verifying the extensions
+    const fileExtension = file.name.split(".").pop().toLowerCase();
+    if (!allowedVideoExtensions.includes(fileExtension)) {
+      alert("Invalid video file type. Please select a file with the following extensions: " + allowedVideoExtensions.join(", "));
+      return;
+    }
+
+    const imgFileExtension = imgFile.name.split(".").pop().toLowerCase();
+    if (!allowedImgFileExtensions.includes(imgFileExtension)) {
+      alert("Invalid video file type. Please select a file with the following extensions: " + allowedImgFileExtensions.join(", "));
+      return;
+    }
+
+    // verifying the size of the files
+    if (file.size > maxVideoSize) {
+      alert("Video's size is too large. Please select a file that is smaller than 50 MB.");
+      return;
+    }
+    if (imgFile.size > maxImgFileSize) {
+      alert("Image's size is too large. Please select a file that is smaller than 10 MB.");
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
+
     
     let tempTags = tags.replace(/\s/g, ''); // remove all whitespaces
-    tempTags = tempTags.replace(/,+/g, ','); // remove multiple commas with a single one
+    tempTags = tempTags.replace(/,+/g, ','); // replace multiple commas with a single one
     let tagsArray = tempTags.split(","); // splitting tags on [ , ]
     
     formData.append("tags", tagsArray);
@@ -115,8 +156,9 @@ const VideoUpload = () => {
             className="form-control-file"
             id="video"
             name="awesome-file"
-            accept="video/*"
+            accept=".mp4,.mov,.avi,.mkv,.webm"
             onChange={handleFileChange}
+            max="50000000"
             required
           />
         </div>
@@ -128,7 +170,8 @@ const VideoUpload = () => {
             className="form-control-file"
             id="imageE"
             name="thumbnail-file"
-            accept="image/*"
+            accept=".jpg,.jpeg,.png,.gif"
+            size="1000000"
             onChange={handleImgFileChange}
             required
           />

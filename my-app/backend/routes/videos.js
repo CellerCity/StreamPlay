@@ -9,6 +9,8 @@ var fs = require('fs');
 
 const thumbnailTargetDir = "C:/Users/AMAN/Desktop/Files_Shortcuts/NIT AP/3rd year sem 2/Web Development/Website Code/my-app/backend/routes/thumbnails";
 
+
+
 // Set up multer storage
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -148,7 +150,16 @@ router.route("/search").get((req, res) => {
    // .then((videos) => res.json(videos))
    // .catch((err) => res.status(400).json("Error: " + err));
 
-  Video.find({ $or: [{ title: title }, { tags: { $in: tags?.split(",") } }] }) // OR query
+  const tagList = (tags?.split(",")).map(str => str.replace(/\s/g, '').replace(/,{2,}/g, ','));
+  // removing extra spaces and replaces multiple commas with single commas
+  // console.log(tagList);
+
+  Video.find({ $or: [
+    { title: { $regex: title, $options: "i" } }, 
+  { tags: { $in: tagList.map(tag => new RegExp(tag, "i")) 
+} }
+    // 'i' to search irrespective of the case
+] }) // OR query (case insensitive search)
   .then((videos) => {
     // console.log(videos);
     res.json(videos);
