@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const allowedVideoExtensions = ["mp4", "mov", "avi", "mkv", "webm"];
+const allowedVideoExtensions = ["mp4", "mov", "avi", "mkv", "webm", "ogg"];
 const allowedImgFileExtensions = ["jpg", "jpeg", "png", "gif"];
 const maxVideoSize = 10485760; // 10 mb
 const maxImgFileSize = 52428800; // 50 mb 
+const minTitleLength = 3;
+const maxTitleLength = 100;
+const maxDescriptionLength = 250;
+const maxTagsFieldLength = 100;
 
 const VideoUpload = () => {
   const [title, setTitle] = useState("");
@@ -71,6 +75,23 @@ const VideoUpload = () => {
       return;
     }
 
+    // verifying the length of the title, description & tags fields
+    if (title.length < minTitleLength || title.length > maxTitleLength ){
+      alert(`"Title length's should be between ${minTitleLength} and ${maxTitleLength} characters"`);
+      return;
+    }
+    
+    if (description.length > maxDescriptionLength ){
+      alert(`"Description can be atmost ${maxDescriptionLength} characters."`);
+      return;
+    }
+
+    // maxTagFieldLength
+    if (tags.length > maxTagsFieldLength ){
+      alert(`"Tags field can be atmost ${maxTagsFieldLength} characters."`);
+      return;
+    }
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
@@ -81,8 +102,10 @@ const VideoUpload = () => {
     let tagsArray = tempTags.split(","); // splitting tags on [ , ]
     
     formData.append("tags", tagsArray);
-    formData.append("file", file); 
-    formData.append("file", imgFile);
+    formData.append("video-file", file); 
+    formData.append("image-file", imgFile);
+
+    // console.log(formData);
     // awesome-file corresponds to name of the input-field that is useful afterwards in the backend to save the video
 
         axios.post("http://127.0.0.1:5000/videos/", formData, {
@@ -92,17 +115,17 @@ const VideoUpload = () => {
         }).then(response => {
           console.log(response)
           alert("Video uploaded successfully!");        
-          setTitle("");
-          setDescription("");
-          setTags("");
-          setFile(null);
-          setImgFile(null);
+          // setTitle("");
+          // setDescription("");
+          // setTags("");
+          // setFile(null);
+          // setImgFile(null);
           // // Redirect the user to the video page
           // history.push(`/video/${videoId}`);
           
       }).catch (error => {
         console.error(error);
-        alert("Error! The title or the video is duplicate.");
+        alert("Error! The title of the video already exists.");
     });
   };
 
@@ -155,8 +178,8 @@ const VideoUpload = () => {
             type="file"
             className="form-control-file"
             id="video"
-            name="awesome-file"
-            accept=".mp4,.mov,.avi,.mkv,.webm"
+            name="video-file"
+            accept=".mp4,.mov,.avi,.mkv,.webm,.ogg"
             onChange={handleFileChange}
             max="50000000"
             required
@@ -164,12 +187,12 @@ const VideoUpload = () => {
         </div>
         <br/>
         <div className="form-group">
-          <label htmlFor="imageE" >Upload Thumbnail</label>
+          <label htmlFor="imagee" >Upload Thumbnail</label>
           <input
             type="file"
             className="form-control-file"
-            id="imageE"
-            name="thumbnail-file"
+            id="image"
+            name="image-file"
             accept=".jpg,.jpeg,.png,.gif"
             size="1000000"
             onChange={handleImgFileChange}
