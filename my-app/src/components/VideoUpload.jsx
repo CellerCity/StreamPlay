@@ -61,7 +61,7 @@ const VideoUpload = () => {
 
     const imgFileExtension = imgFile.name.split(".").pop().toLowerCase();
     if (!allowedImgFileExtensions.includes(imgFileExtension)) {
-      alert("Invalid video file type. Please select a file with the following extensions: " + allowedImgFileExtensions.join(", "));
+      alert("Invalid image file type. Please select a file with the following extensions: " + allowedImgFileExtensions.join(", "));
       return;
     }
 
