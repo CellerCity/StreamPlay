@@ -25,15 +25,15 @@ function App() {
           <Navbar/> 
           <Feed />
           </>} />
-          <Route path='/video/:id' exact element={
+        <Route path='/video/:id' exact element={
           <>
           <Navbar/>
           <VideoDetail /> </>} />
-          <Route path='/channel/:id' exact element={
+        <Route path='/channel/:id' exact element={
           <>
           <Navbar/>
           <ChannelDetail /> </> } />
-          <Route path='/search/:searchTerm' exact element={
+        <Route path='/search/:searchTerm' exact element={
             <>
             <Navbar/>
             <SearchFeed /> </> } />

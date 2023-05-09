@@ -23,7 +23,8 @@ export default function SignUp() {
     };
     
     const validatePassword = (password) => {
-      // Minimum four characters, at least one uppercase letter, one lowercase letter, one number and one special character
+      // Minimum four characters, at least one uppercase letter, one lowercase letter,
+      // one number and one special character
       const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{4,}$/;
       return regex.test(password);
     };

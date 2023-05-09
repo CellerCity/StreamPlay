@@ -7,7 +7,7 @@ export default function LocalVideos({ selectedCategory }) {
     const [videos, setVideos] = useState([]);
     // console.log("Inside LocalVideoDetail Component");
     // console.log(selectedCategory);
-    const tagSearchStr = (selectedCategory.includes(",")) ?  selectedCategory.replace(/\s+/g, '').replace(/,+/g, ',') : selectedCategory;
+    const tagSearchStr = (selectedCategory?.includes(",")) ?  selectedCategory.replace(/\s+/g, '').replace(/,+/g, ',') : selectedCategory;
     // if the search string has commas we can pass the individual comma separated terms as tags(string)
 
     console.log(tagSearchStr);
